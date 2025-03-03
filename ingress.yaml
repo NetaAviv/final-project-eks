@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+  namespace: neta-aviv-new
+spec:
+  ingressClassName: my-ingress-class
+  rules:
+  
+host: aefab0f861e824c15b9839b902834ba2-1418410576.us-east-1.elb.amazonaws.com
+  http:
+    paths:
+path: /
+    pathType: Prefix
+    backend:
+      service:
+        name: wordpress
+        port:
+          number: 80

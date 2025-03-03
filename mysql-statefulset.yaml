@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mariadb
+  namespace: neta-aviv-new  # or specify your namespace
+spec:
+  serviceName: "mysql"
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: 992382545251.dkr.ecr.us-east-1.amazonaws.com/neta/eks_workshop:mariadb
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret  # Ensure you have a secret with the DB credentials
+                  key: mysql-root-password
+          volumeMounts:
+            - name: mysql-storage
+              mountPath: /var/lib/mysql  # This is where MySQL stores its data
+  volumeClaimTemplates:
+    - metadata:
+        name: mysql-storage
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 5Gi 
+        storageClassName: neta
