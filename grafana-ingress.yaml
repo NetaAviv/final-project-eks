@@ -1,20 +1,20 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: wordpress-ingress
+  name: neta-grafana-ingress
   namespace: neta-aviv-new
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-  ingressClassName: nginx  # Use "nginx" as your ingress class
+  ingressClassName: nginx
   rules:
-  - host: wordpress.example.com  # Replace with your actual domain or remove this line
+  - host: grafana.neta-aviv.com  # Change this to your domain or a subdomain
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: wordpress-service  # Make sure this is the correct Service name
+            name: neta-kube-prom-stack-grafana
             port:
               number: 80
