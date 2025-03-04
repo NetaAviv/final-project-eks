@@ -33,10 +33,14 @@ kubectl apply -f wordpress-service.yaml -n neta-aviv-new
 kubectl apply -f ingress.yaml -n neta-aviv-new
 ```
 ### LB
+```bash
 echo "  type: LoadBalancer" >> wordpress-service.yaml
 kubectl apply -f wordpress-service.yaml -n neta-aviv-new
+```
 to view the lb: 
+```bash
 kubectl get service | grep wordpress-service
+```
 
 ### 3. Apply Persistent Volumes and Claims
 ```bash
