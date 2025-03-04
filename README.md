@@ -23,6 +23,7 @@ cd final-project-eks
 ### We have two options:
  - Ingress
  - LB
+
 I recommand using ingress so that we could easily access our grafana page in the future
 
 
