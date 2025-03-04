@@ -11,6 +11,7 @@ Ensure the following are installed and configured:
 - AWS CLI (if using AWS EKS)
 - Git
 
+
 ## 1. Clone the Repository
 Clone the repository to your local machine:
 
@@ -19,7 +20,37 @@ git clone https://github.com/NetaAviv/final-project-eks.git
 cd final-project-eks
 ```
 
-## 2. Deploy the Application
+
+## 2. Create a storage class if needed
+
+```bash
+kubectl apply -f storage-class.yaml -n neta-aviv-new
+```
+
+
+## 3. Create PVCs
+
+```bash
+kubectl apply -f mysql-pvc-neta.yaml -n neta-aviv-new
+kubectl apply -f wordpress-pvc.yaml -n neta-aviv-new
+```
+
+
+### 4. Deploy MariaDB
+
+```bash
+kubectl apply -f mysql-statefulset.yaml -n neta-aviv-new
+```
+
+
+### 5. Deploy WordPress
+
+```bash
+kubectl apply -f wordpress-deployment.yaml -n neta-aviv-new
+```
+
+
+## 6. Deploy the Application
 
 ### We have two options:
  - Ingress
@@ -44,29 +75,7 @@ kubectl get service | grep wordpress-service
 ```
 
 
-### 3. Apply Persistent Volumes and Claims
-
-```bash
-kubectl apply -f mysql-pvc-neta.yaml -n neta-aviv-new
-kubectl apply -f wordpress-pvc.yaml -n neta-aviv-new
-```
-
-
-### 4. Deploy MariaDB
-
-```bash
-kubectl apply -f mysql-statefulset.yaml -n neta-aviv-new
-```
-
-
-### 5. Deploy WordPress
-
-```bash
-kubectl apply -f wordpress-deployment.yaml -n neta-aviv-new
-```
-
-
-### 6. Verify Deployment
+### 7. Verify Deployment
 
 Check the status of your resources:
 
@@ -76,7 +85,7 @@ kubectl get services -n neta-aviv-new
 ```
 
 
-## 7. Accessing the WordPress Application- if you used ingress
+## 8. Accessing the WordPress Application- if you used ingress
 
 Retrieve the external URL of your application:
 
@@ -92,7 +101,7 @@ In your browser:
 - **To view Grafana**: http://host-url/grafana
 
 
-## 8. Cleanup
+## 9. Cleanup
 To delete all resources:
 
 ```bash
