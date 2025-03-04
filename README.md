@@ -24,29 +24,29 @@ cd final-project-eks
 ## 2. Create a storage class if needed
 
 ```bash
-kubectl apply -f storage-class.yaml -n neta-aviv-new
+kubectl apply -f storage-class.yaml -n [enter your namespace here]
 ```
 
 
 ## 3. Create PVCs
 
 ```bash
-kubectl apply -f mysql-pvc-neta.yaml -n neta-aviv-new
-kubectl apply -f wordpress-pvc.yaml -n neta-aviv-new
+kubectl apply -f mysql-pvc-neta.yaml -n [enter your namespace here]
+kubectl apply -f wordpress-pvc.yaml -n [enter your namespace here]
 ```
 
 
 ### 4. Deploy MariaDB
 
 ```bash
-kubectl apply -f mysql-statefulset.yaml -n neta-aviv-new
+kubectl apply -f mysql-statefulset.yaml -n [enter your namespace here]
 ```
 
 
 ### 5. Deploy WordPress
 
 ```bash
-kubectl apply -f wordpress-deployment.yaml -n neta-aviv-new
+kubectl apply -f wordpress-deployment.yaml -n [enter your namespace here]
 ```
 
 
@@ -59,15 +59,16 @@ kubectl apply -f wordpress-deployment.yaml -n neta-aviv-new
 I recommand using ingress so that we could easily access our grafana page in the future using Path-based routing
 
 
-### Ingress= Set Up Ingress (Ensure Nginx Ingress is Installed)
+### Ingress= Set Up Ingress
 ```bash
-kubectl apply -f wordpress-service.yaml -n neta-aviv-new
-kubectl apply -f ingress.yaml -n neta-aviv-new
+helm install [name of your new ingress] ingress-nginx/ingress-nginx --namespace [enter your namespace here] --set controller.ingressClassResource.name=[name your ingress class] -f values.yaml
+kubectl apply -f wordpress-service.yaml -n [enter your namespace here]
+kubectl apply -f ingress.yaml -n [enter your namespace here]
 ```
 ### LB
 ```bash
 echo "  type: LoadBalancer" >> wordpress-service.yaml
-kubectl apply -f wordpress-service.yaml -n neta-aviv-new
+kubectl apply -f wordpress-service.yaml -n [enter your namespace here]
 ```
 to view the lb: 
 ```bash
@@ -80,8 +81,8 @@ kubectl get service | grep wordpress-service
 Check the status of your resources:
 
 ```bash
-kubectl get pods -n neta-aviv-new
-kubectl get services -n neta-aviv-new
+kubectl get pods -n [enter your namespace here]
+kubectl get services -n [enter your namespace here]
 ```
 
 
