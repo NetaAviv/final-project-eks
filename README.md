@@ -84,10 +84,12 @@ Retrieve the external URL of your application:
 kubectl get ingress -n neta-aviv-new
 ```
 
-Look for the `HOSTS` column, which will show the URL, such as:
+Look for the `HOSTS` column, which will show the URL:
 
-- **WordPress**: http://host-url/
-- **Grafana**: http://host-url/grafana
+In your browser:
+
+- **To view WordPress**: http://host-url/
+- **To view Grafana**: http://host-url/grafana
 
 
 ## 8. Cleanup
