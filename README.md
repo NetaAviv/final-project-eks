@@ -25,7 +25,7 @@ cd final-project-eks
  - Ingress
  - LB
 
-I recommand using ingress so that we could easily access our grafana page in the future
+I recommand using ingress so that we could easily access our grafana page in the future using Path-based routing
 
 
 ### Ingress= Set Up Ingress (Ensure Nginx Ingress is Installed)
