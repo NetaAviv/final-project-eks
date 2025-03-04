@@ -9,12 +9,12 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
 spec:
-  ingressClassName: neta-ingress  # Make sure this matches the class you want to use
+  ingressClassName: neta-ingress-class  
   rules:
-  - host: a761f7756f85049e49c5dfe7c5f3f6c8-158563809.us-east-1.elb.amazonaws.com
+  - host: a1bb916ad85bd4e77a3d544445565ebb-839766664.us-east-1.elb.amazonaws.com
     http:
       paths:
-      - path: /monitoring/(grafana|login)(/|$)(.*)  # Modified path to avoid conflict
+      - path: /monitoring/(grafana|login)(/|$)(.*)
         pathType: ImplementationSpecific
         backend:
           service:
