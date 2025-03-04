@@ -38,12 +38,14 @@ kubectl apply -f wordpress-pvc.yaml -n [enter your namespace here]
 
 ### 4. Deploy MariaDB
 
+
 ```bash
 kubectl apply -f mysql-statefulset.yaml -n [enter your namespace here]
 ```
 
 
 ### 5. Deploy WordPress
+
 
 ```bash
 kubectl apply -f wordpress-deployment.yaml -n [enter your namespace here]
@@ -77,6 +79,7 @@ kubectl get service | grep wordpress-service
 
 
 ### 7. Verify Deployment
+
 
 Check the status of your resources:
 
