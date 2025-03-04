@@ -20,6 +20,7 @@ cd final-project-eks
 ```
 
 ## 2. Deploy the Application
+
 ### We have two options:
  - Ingress
  - LB
@@ -44,6 +45,7 @@ kubectl get service | grep wordpress-service
 
 
 ### 3. Apply Persistent Volumes and Claims
+
 ```bash
 kubectl apply -f mysql-pvc-neta.yaml -n neta-aviv-new
 kubectl apply -f wordpress-pvc.yaml -n neta-aviv-new
@@ -51,18 +53,21 @@ kubectl apply -f wordpress-pvc.yaml -n neta-aviv-new
 
 
 ### 4. Deploy MariaDB
+
 ```bash
 kubectl apply -f mysql-statefulset.yaml -n neta-aviv-new
 ```
 
 
 ### 5. Deploy WordPress
+
 ```bash
 kubectl apply -f wordpress-deployment.yaml -n neta-aviv-new
 ```
 
 
 ### 6. Verify Deployment
+
 Check the status of your resources:
 
 ```bash
@@ -81,8 +86,8 @@ kubectl get ingress -n neta-aviv-new
 
 Look for the `HOSTS` column, which will show the URL, such as:
 
-- **WordPress**: [http://<host-url>/](http://<host-url>/)
-- **Grafana**: [http://<host-url>/grafana](http://<host-url>/grafana)
+- **WordPress**: http://host-url/
+- **Grafana**: http://host-url/grafana
 
 
 ## 8. Cleanup
