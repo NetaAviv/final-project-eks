@@ -100,9 +100,3 @@ kubectl delete namespace neta-aviv-new
 ```
 
 ---
-
-## Contributing
-Feel free to open issues or submit pull requests for improvements!
-
-## License
-This project is open-source and available under the MIT License.
