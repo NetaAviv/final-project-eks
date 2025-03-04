@@ -91,7 +91,7 @@ kubectl get services -n [enter your namespace here]
 Retrieve the external URL of your application:
 
 ```bash
-kubectl get ingress -n neta-aviv-new
+kubectl get ingress -n [enter your namespace here]
 ```
 
 Look for the `HOSTS` column, which will show you a URL
@@ -106,7 +106,7 @@ In your browser:
 To delete all resources:
 
 ```bash
-kubectl delete namespace neta-aviv-new
+kubectl delete namespace [enter your namespace here]
 ```
 
 ---
