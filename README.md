@@ -1,5 +1,5 @@
 
-# Neta's-Project: WordPress Deployment on Kubernetes
+# Neta's Project: WordPress Deployment on Kubernetes
 
 This repository contains Kubernetes manifests for deploying a WordPress application with a MariaDB database on an AWS EKS cluster.
 
