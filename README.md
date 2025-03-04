@@ -11,7 +11,7 @@ Ensure the following are installed and configured:
 - AWS CLI (if using AWS EKS)
 - Git
 
-## Clone the Repository
+## 1. Clone the Repository
 Clone the repository to your local machine:
 
 ```bash
@@ -19,39 +19,49 @@ git clone https://github.com/NetaAviv/final-project-eks.git
 cd final-project-eks
 ```
 
-## Deploy the Application
+## 2. Deploy the Application
+### We have two options:
+ - Ingress
+ - LB
+I recommand using ingress so that we could easily access our grafana page in the future
 
-### 1. Apply Persistent Volumes and Claims
+
+### Ingress= Set Up Ingress (Ensure Nginx Ingress is Installed)
+```bash
+kubectl apply -f wordpress-service.yaml -n neta-aviv-new
+kubectl apply -f ingress.yaml -n neta-aviv-new
+```
+### LB
+echo "  type: LoadBalancer" >> wordpress-service.yaml
+kubectl apply -f wordpress-service.yaml -n neta-aviv-new
+to view the lb: 
+kubectl get service | grep wordpress-service
+
+### 3. Apply Persistent Volumes and Claims
 ```bash
 kubectl apply -f mysql-pvc-neta.yaml -n neta-aviv-new
 kubectl apply -f wordpress-pvc.yaml -n neta-aviv-new
 ```
 
-### 2. Deploy MariaDB
+### 4. Deploy MariaDB
 ```bash
-kubectl apply -f mariadb-deployment.yaml -n neta-aviv-new
+kubectl apply -f mysql-statefulset.yaml -n neta-aviv-new
 ```
 
-### 3. Deploy WordPress
+### 5. Deploy WordPress
 ```bash
 kubectl apply -f wordpress-deployment.yaml -n neta-aviv-new
 ```
 
-### 4. Set Up Ingress (Ensure Nginx Ingress is Installed)
-```bash
-kubectl apply -f ingress.yaml -n neta-aviv-new
-```
-
-### 5. Verify Deployment
+### 6. Verify Deployment
 Check the status of your resources:
 
 ```bash
 kubectl get pods -n neta-aviv-new
 kubectl get services -n neta-aviv-new
-kubectl get ingress -n neta-aviv-new
 ```
 
-## Accessing the WordPress Application
+## Accessing the WordPress Application- if you used ingress
 
 Retrieve the external URL of your application:
 
