@@ -84,7 +84,7 @@ Retrieve the external URL of your application:
 kubectl get ingress -n neta-aviv-new
 ```
 
-Look for the `HOSTS` column, which will show the URL:
+Look for the `HOSTS` column, which will show you a URL
 
 In your browser:
 
