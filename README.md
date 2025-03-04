@@ -85,6 +85,7 @@ kubectl get pods -n [enter your namespace here]
 kubectl get services -n [enter your namespace here]
 ```
 
+
 ## 8. Install helm for grafana and prometheus:
 
 ```bash
@@ -110,6 +111,7 @@ In your browser:
 
 - **To view WordPress**: http://host-url/
 - **To view Grafana**: http://host-url/grafana
+
 
 
 ## 10. Cleanup
