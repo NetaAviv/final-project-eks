@@ -27,37 +27,15 @@ cd final-project-eks
 kubectl apply -f storage-class.yaml -n [enter your namespace here]
 ```
 
-
-## 3. Create PVCs
-
-```bash
-kubectl apply -f mysql-pvc-neta.yaml -n [enter your namespace here]
-kubectl apply -f wordpress-pvc.yaml -n [enter your namespace here]
-```
-
-
-## 4. Deploy MariaDB
-
-
+## 3. Deploy MariaDB
 
 ```bash
-kubectl apply -f mysql-statefulset.yaml -n [enter your namespace here]
+kubectl apply -f app/mysql -n [enter your namespace here]
 ```
 
+## 4. Before deploying the wordpress Application
 
-
-## 5. Deploy WordPress
-
-
-
-```bash
-kubectl apply -f wordpress-deployment.yaml -n [enter your namespace here]
-```
-
-
-## 6. Deploy the Application
-
-### We have two options:
+### You need to choose between two options:
  - Ingress
  - LB
 
@@ -67,21 +45,24 @@ I recommand using ingress so that we could easily access our grafana page in the
 ### Ingress= Set Up Ingress
 ```bash
 helm install [name of your new ingress] ingress-nginx/ingress-nginx --namespace [enter your namespace here] --set controller.ingressClassResource.name=[name your ingress class] -f values.yaml
-kubectl apply -f wordpress-service.yaml -n [enter your namespace here]
 kubectl apply -f ingress.yaml -n [enter your namespace here]
 ```
 ### LB
 ```bash
-echo "  type: LoadBalancer" >> wordpress-service.yaml
-kubectl apply -f wordpress-service.yaml -n [enter your namespace here]
+echo "  type: LoadBalancer" >> app/wordpress/wordpress-service.yaml
 ```
 to view the lb: 
 ```bash
 kubectl get service | grep wordpress-service
 ```
 
+## 5. Deploy Wordpress
 
-## 7. Verify Deployment
+```bash
+kubectl apply -f app/wordpress -n [enter your namespace here]
+```
+
+## 6. Verify Deployment
 
 
 Check the status of your resources:
@@ -92,7 +73,7 @@ kubectl get services -n [enter your namespace here]
 ```
 
 
-## 8. Install helm for grafana and prometheus:
+## 7. Install helm for grafana and prometheus:
 
 
 ```bash
@@ -104,7 +85,7 @@ helm install [RELEASE_NAME] prometheus-community/kube-prometheus-stack
 ```
 
 
-## 9. Accessing the WordPress Application- if you used ingress
+## 8. Accessing the WordPress Application- if you used ingress
 
 Retrieve the external URL of your application:
 
@@ -121,7 +102,7 @@ In your browser:
 
 
 
-## 10. Cleanup
+## 9. Cleanup
 To delete all resources:
 
 ```bash
