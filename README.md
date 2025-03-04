@@ -42,21 +42,25 @@ to view the lb:
 kubectl get service | grep wordpress-service
 ```
 
+
 ### 3. Apply Persistent Volumes and Claims
 ```bash
 kubectl apply -f mysql-pvc-neta.yaml -n neta-aviv-new
 kubectl apply -f wordpress-pvc.yaml -n neta-aviv-new
 ```
 
+
 ### 4. Deploy MariaDB
 ```bash
 kubectl apply -f mysql-statefulset.yaml -n neta-aviv-new
 ```
 
+
 ### 5. Deploy WordPress
 ```bash
 kubectl apply -f wordpress-deployment.yaml -n neta-aviv-new
 ```
+
 
 ### 6. Verify Deployment
 Check the status of your resources:
@@ -66,7 +70,8 @@ kubectl get pods -n neta-aviv-new
 kubectl get services -n neta-aviv-new
 ```
 
-## Accessing the WordPress Application- if you used ingress
+
+## 7. Accessing the WordPress Application- if you used ingress
 
 Retrieve the external URL of your application:
 
@@ -79,7 +84,8 @@ Look for the `HOSTS` column, which will show the URL, such as:
 - **WordPress**: [http://<host-url>/](http://<host-url>/)
 - **Grafana**: [http://<host-url>/grafana](http://<host-url>/grafana)
 
-## Cleanup
+
+## 8. Cleanup
 To delete all resources:
 
 ```bash
