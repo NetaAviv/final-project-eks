@@ -1,14 +1,26 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: wordpress-ingress-1
+  name: combined-ingress
   namespace: neta-aviv-new
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
 spec:
-  ingressClassName: nginx
+  ingressClassName: neta-ingress  # Make sure this matches the class you want to use
   rules:
-  - host: a794857bc603a4c209ddae88624d6582-171006321.us-east-1.elb.amazonaws.com
+  - host: a761f7756f85049e49c5dfe7c5f3f6c8-158563809.us-east-1.elb.amazonaws.com
     http:
       paths:
+      - path: /monitoring/(grafana|login)(/|$)(.*)  # Modified path to avoid conflict
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: kube-prom-stack-grafana
+            port:
+              number: 80
       - path: /
         pathType: Prefix
         backend:

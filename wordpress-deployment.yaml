@@ -20,7 +20,7 @@ spec:
         - containerPort: 80
         env:
         - name: WORDPRESS_DB_HOST
-          value: mysql-service.neta-aviv-new.svc.cluster.local
+          value: mariadb.neta-aviv-new.svc.cluster.local
         - name: WORDPRESS_DB_NAME
           value: wordpress
         - name: WORDPRESS_DB_USER
@@ -33,4 +33,4 @@ spec:
       volumes:
       - name: wordpress-data
         persistentVolumeClaim:
-          claimName: wordpress-pvc-neta  # REFERENCING PVC HERE
+          claimName: wordpress-pvc-neta

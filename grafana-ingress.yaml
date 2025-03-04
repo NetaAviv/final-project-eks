@@ -1,20 +1,20 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: neta-grafana-ingress
+  name: grafana-ingress
   namespace: neta-aviv-new
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-  ingressClassName: nginx
+  ingressClassName: neta-grafana  # Make sure this line is added
   rules:
-  - host: grafana.neta-aviv.com  # Change this to your domain or a subdomain
+  - host: a1bb916ad85bd4e77a3d544445565ebb-839766664.us-east-1.elb.amazonaws.com
     http:
       paths:
-      - path: /
+      - path: /netagraf
         pathType: Prefix
         backend:
           service:
-            name: neta-kube-prom-stack-grafana
+            name: kube-prom-stack-grafana
             port:
               number: 80
