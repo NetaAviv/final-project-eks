@@ -85,8 +85,18 @@ kubectl get pods -n [enter your namespace here]
 kubectl get services -n [enter your namespace here]
 ```
 
+## 8. Install helm for grafana and prometheus:
 
-## 8. Accessing the WordPress Application- if you used ingress
+```bash
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+```
+```bash
+helm install [RELEASE_NAME] prometheus-community/kube-prometheus-stack
+```
+
+
+## 9. Accessing the WordPress Application- if you used ingress
 
 Retrieve the external URL of your application:
 
@@ -102,7 +112,7 @@ In your browser:
 - **To view Grafana**: http://host-url/grafana
 
 
-## 9. Cleanup
+## 10. Cleanup
 To delete all resources:
 
 ```bash
